@@ -4,7 +4,7 @@
 
 #include "ICM20648.h"
 #include "MPU9250.h"
-
+#include "ICM42670.h"
 
 class cIMUDevice
 {
@@ -54,13 +54,15 @@ class cIMUDevice
  private:
   cMPU9250 DEV1;
   cICM20648 DEV2;
+  cICM42670 DEV3;
 
   uint8_t device_model;
 
   enum DeviceModel
   {
     MPU9250=1,
-    ICM20468
+    ICM20468,
+    ICM42670
   };
 };
 

@@ -14,7 +14,12 @@ bool cIMUDevice::begin( void )
     device_model = ICM20468;
     result = true;
   }
-  
+  else if (DEV3.begin() == true)
+  {
+    device_model = ICM42670;
+    result = true;
+  }  
+
   return result;
 }
 
@@ -28,6 +33,9 @@ void cIMUDevice::init( void )
     case ICM20468:
       DEV2.init();
       break;
+    case ICM42670:
+      DEV3.init();
+      break;      
     default : break;
   }
 }
@@ -42,6 +50,9 @@ void cIMUDevice::gyro_init( void )
     case ICM20468:
       DEV2.gyro_init();
       break;
+    case ICM42670:
+      DEV3.gyro_init();
+      break;      
     default : break;
   }
 }
@@ -60,6 +71,11 @@ void cIMUDevice::gyro_get_adc( void )
       memcpy(gyroRAW,DEV2.gyroRAW,3*sizeof(int16_t));
       memcpy(gyroADC,DEV2.gyroADC,3*sizeof(int16_t));
       break;
+    case ICM42670:
+      DEV3.gyro_get_adc();
+      memcpy(gyroRAW,DEV3.gyroRAW,3*sizeof(int16_t));
+      memcpy(gyroADC,DEV3.gyroADC,3*sizeof(int16_t));
+      break;      
     default : break;
   }
 }
@@ -74,6 +90,9 @@ void cIMUDevice::gyro_common()
     case ICM20468:
       DEV2.gyro_common();
       break;
+    case ICM42670:
+      DEV3.gyro_common();
+      break;      
     default : break;
   }
 }
@@ -88,6 +107,9 @@ void cIMUDevice::gyro_cali_start()
     case ICM20468:
       DEV2.gyro_cali_start();
       break;
+    case ICM42670:
+      DEV3.gyro_cali_start();
+      break;      
     default : break; 
   }
 }
@@ -104,6 +126,9 @@ bool cIMUDevice::gyro_cali_get_done()
     case ICM20468:
       result = DEV2.gyro_cali_get_done();
       break;
+    case ICM42670:
+      result = DEV3.gyro_cali_get_done();
+      break;      
     default : break;
   }
 
@@ -120,6 +145,9 @@ void cIMUDevice::acc_init( void )
     case ICM20468:
       DEV2.acc_init();
       break;
+    case ICM42670:
+      DEV3.acc_init();
+      break;      
     default : break;
   }
 }
@@ -138,6 +166,11 @@ void cIMUDevice::acc_get_adc( void )
       memcpy(accRAW,DEV2.accRAW,3*sizeof(int16_t));
       memcpy(accADC,DEV2.accADC,3*sizeof(int16_t));
       break;
+    case ICM42670:
+      DEV3.acc_get_adc();
+      memcpy(accRAW,DEV3.accRAW,3*sizeof(int16_t));
+      memcpy(accADC,DEV3.accADC,3*sizeof(int16_t));
+      break;      
     default : break;
   }
 }
@@ -152,6 +185,9 @@ void cIMUDevice::acc_common( void )
     case ICM20468:
       DEV2.acc_common();
       break;
+    case ICM42670:
+      DEV3.acc_common();
+      break;      
     default : break;
   }
 }
@@ -166,6 +202,9 @@ void cIMUDevice::acc_cali_start()
     case ICM20468:
       DEV2.acc_cali_start();
       break;
+    case ICM42670:
+      DEV3.acc_cali_start();
+      break;      
     default : break;
   }
 }
@@ -182,6 +221,9 @@ bool cIMUDevice::acc_cali_get_done()
     case ICM20468:
     result = DEV2.acc_cali_get_done();
     break;
+    case ICM42670:
+    result = DEV3.acc_cali_get_done();
+    break;    
     default : break;
   }
   return result;
@@ -197,6 +239,9 @@ void cIMUDevice::mag_init( void )
     case ICM20468:
       DEV2.mag_init();
       break;
+    case ICM42670:
+      DEV3.mag_init();
+      break;      
     default : break;
   }
 }
@@ -215,6 +260,11 @@ void cIMUDevice::mag_get_adc( void )
       memcpy(magRAW,DEV2.magRAW,3*sizeof(int16_t));
       memcpy(magADC,DEV2.magADC,3*sizeof(int16_t));
       break;
+    case ICM42670:
+      DEV3.mag_get_adc();
+      memcpy(magRAW,DEV3.magRAW,3*sizeof(int16_t));
+      memcpy(magADC,DEV3.magADC,3*sizeof(int16_t));
+      break;      
     default : break;
   }
 }
@@ -228,6 +278,9 @@ void cIMUDevice::mag_common()
     case ICM20468:
       DEV2.mag_common();
       break;
+    case ICM42670:
+      DEV3.mag_common();
+      break;      
     default : break;
   }
 }
@@ -241,6 +294,9 @@ void cIMUDevice::mag_cali_start()
     case ICM20468:
       DEV2.mag_cali_start();
       break;
+    case ICM42670:
+      DEV3.mag_cali_start();
+      break;      
     default : break;
   }
 }
@@ -257,6 +313,9 @@ bool cIMUDevice::mag_cali_get_done()
     case ICM20468:
       result = DEV2.mag_cali_get_done();
       break;
+    case ICM42670:
+      result = DEV3.mag_cali_get_done();
+      break;      
     default : break;
   }
 
